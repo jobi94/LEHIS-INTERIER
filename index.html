@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#F7F5F2">
 <title>Lehis Interier — Kuchyně na míru</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="Lehis_photo_work/518075049_1259931392810763_7178988791540039949_n.jpg">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -647,6 +651,17 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);padding:68px 80px 38px
   .lb-btn{width:40px;height:40px;font-size:18px}
 }
 
+/* ── PERFORMANCE ── */
+.feature,.process,.cta-banner,#kontakt,footer{
+  content-visibility:auto;
+  contain-intrinsic-size:0 500px;
+}
+/* Remove expensive blur on phones */
+@media(max-width:600px){
+  nav{backdrop-filter:none}
+  .mobile-menu{backdrop-filter:none;background:rgba(255,255,255,.99)}
+}
+
 /* ── SMALL PHONE (≤380px) ── */
 @media(max-width:380px){
   .nav-cta{display:none} /* just show email icon on very small screens */
@@ -705,7 +720,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);padding:68px 80px 38px
     </div>
   </div>
   <div class="hero-right">
-    <img src="Lehis_photo_work/518075049_1259931392810763_7178988791540039949_n.jpg" alt="Kuchyně na míru — Lehis Interier">
+    <img src="Lehis_photo_work/518075049_1259931392810763_7178988791540039949_n.jpg" alt="Kuchyně na míru — Lehis Interier" fetchpriority="high" decoding="async">
     <div class="hero-badge">
       <div class="badge-num">138+</div>
       <div class="badge-lbl">realizovaných projektů</div>
@@ -758,7 +773,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);padding:68px 80px 38px
 <!-- FEATURE -->
 <section class="feature" id="o-nas">
   <div class="feature-img">
-    <img src="Lehis_photo_work/611314757_1414320044038563_3175097757952522673_n.jpg" alt="Detail kuchyně Lehis Interier">
+    <img src="Lehis_photo_work/611314757_1414320044038563_3175097757952522673_n.jpg" alt="Detail kuchyně Lehis Interier" loading="lazy" decoding="async">
   </div>
   <div class="feature-content">
     <p class="sec-eyebrow">Proč Lehis Interier</p>
@@ -846,7 +861,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);padding:68px 80px 38px
   <div class="footer-top">
     <div class="footer-brand">
       <div class="fbrand">
-        <img src="lehis-logo.jpg" alt="Lehis Interier">
+        <img src="lehis-logo.jpg" alt="Lehis Interier" loading="lazy" decoding="async">
         <span>Lehis Interier</span>
       </div>
       <p>Luxusní kuchyně a interiéry na míru. Precizní zpracování, prémiové materiály, výsledky na desetiletí.</p>
@@ -938,12 +953,41 @@ const photos = [
   'Lehis_photo_work/515586027_1252674313536471_6819597809162526908_n.jpg',
 ];
 
+// ── Lazy image loader (IntersectionObserver) ──
+const imgObs = new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if(e.isIntersecting && e.target.dataset.src) {
+      e.target.src = e.target.dataset.src;
+      e.target.removeAttribute('data-src');
+      obs.unobserve(e.target);
+    }
+  });
+}, {rootMargin:'300px 0px'});
+
+function makeImg(src, alt, eager) {
+  const img = document.createElement('img');
+  img.alt = alt;
+  img.decoding = 'async';
+  if(eager) {
+    img.src = src;
+  } else {
+    img.dataset.src = src;
+    img.loading = 'lazy';
+    imgObs.observe(img);
+  }
+  return img;
+}
+
 // ── Build carousel ──
 const track = document.getElementById('carTrack');
 photos.forEach((src, i) => {
   const el = document.createElement('div');
   el.className = 'car-item';
-  el.innerHTML = `<img src="${src}" alt="Projekt ${i+1}" loading="lazy"><div class="car-item-ov"><span class="car-zoom">Zobrazit →</span></div>`;
+  const ov = document.createElement('div');
+  ov.className = 'car-item-ov';
+  ov.innerHTML = '<span class="car-zoom">Zobrazit →</span>';
+  el.appendChild(makeImg(src, `Projekt ${i+1}`, i < 9));
+  el.appendChild(ov);
   el.addEventListener('click', () => openLightbox(i));
   track.appendChild(el);
 });
@@ -963,12 +1007,16 @@ document.addEventListener('mousemove', e=>{
   track.scrollLeft=dragScrollLeft-(x-dragStartX)*1.2;
 });
 
-// ── Build full grid ──
+// ── Build full grid (all lazy — hidden until expanded) ──
 const grid = document.getElementById('galleryGrid');
 photos.forEach((src, i) => {
   const el = document.createElement('div');
   el.className = 'gallery-item';
-  el.innerHTML = `<img src="${src}" alt="Projekt ${i+1}" loading="lazy"><div class="gallery-item-overlay"><span class="gallery-zoom">Zobrazit →</span></div>`;
+  const ov = document.createElement('div');
+  ov.className = 'gallery-item-overlay';
+  ov.innerHTML = '<span class="gallery-zoom">Zobrazit →</span>';
+  el.appendChild(makeImg(src, `Projekt ${i+1}`, false));
+  el.appendChild(ov);
   el.addEventListener('click', () => openLightbox(i));
   grid.appendChild(el);
 });
