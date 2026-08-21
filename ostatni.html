@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F7F5F2">
+<title>Ostatní realizace na míru — Lehis Interier</title>
+<meta name="description" content="Šatny, pracovny, dětské pokoje a další nábytek na míru od Lehis Interier — řešení šitá přesně na míru vašemu prostoru a přání.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-left nav-links">
+    <div class="nav-dropdown">
+      <a href="index.html#galerie" class="nav-dropdown-trigger">
+        Naše projekty
+        <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown-menu">
+        <a href="kuchyne.html">Kuchyně</a>
+        <a href="obyvaci-pokoje.html">Obývací pokoje</a>
+        <a href="koupelny.html">Koupelny</a>
+        <a href="chodby.html">Chodby</a>
+        <a href="ostatni.html">Ostatní</a>
+      </div>
+    </div>
+    <a href="index.html#o-nas">O nás</a>
+    <a href="index.html#proces">Proces</a>
+  </div>
+  <a href="index.html" class="nav-brand">
+    <img src="lehis-logo.jpg" alt="Lehis Interier">
+    <span class="nav-brand-name">Lehis Interier</span>
+  </a>
+  <div class="nav-right nav-links">
+    <a href="mailto:info@lehisinterier.cz" class="nav-email-btn" title="Napsat email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 2L11 13"/>
+        <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+      </svg>
+    </a>
+    <a href="index.html#kontakt" class="nav-cta">Poptávka →</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DROPDOWN -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-toggle" id="mmToggle" aria-expanded="false">
+    Naše projekty
+    <svg class="mm-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="mm-submenu" id="mmSubmenu">
+    <a href="index.html#galerie" class="mm-sub-all" onclick="closeMenu()">Všechny realizace</a>
+    <a href="kuchyne.html" onclick="closeMenu()">Kuchyně</a>
+    <a href="obyvaci-pokoje.html" onclick="closeMenu()">Obývací pokoje</a>
+    <a href="koupelny.html" onclick="closeMenu()">Koupelny</a>
+    <a href="chodby.html" onclick="closeMenu()">Chodby</a>
+    <a href="ostatni.html" onclick="closeMenu()">Ostatní</a>
+  </div>
+  <a href="index.html#o-nas" onclick="closeMenu()">O nás</a>
+  <a href="index.html#proces" onclick="closeMenu()">Proces</a>
+  <a href="mailto:info@lehisinterier.cz" onclick="closeMenu()">✉ Napsat email</a>
+  <a href="index.html#kontakt" onclick="closeMenu()" class="mm-cta">Poptávka →</a>
+</div>
+
+<!-- PROJECT HERO -->
+<section class="project-hero">
+  <p class="sec-eyebrow">Naše projekty</p>
+  <h1>Další realizace na míru</h1>
+  <p>Kromě kuchyní, obývacích pokojů, koupelen a chodeb realizujeme i další nábytek a interiérové prvky na míru.</p>
+</section>
+
+<!-- PROJECT CONTENT -->
+<section class="project-content">
+  <p>Šatny, pracovny, dětské pokoje, vestavěné skříně či atypické kusy nábytku — každý projekt přizpůsobujeme konkrétnímu prostoru a přání klienta.</p>
+  <p>Pokud váš záměr nezapadá do žádné z výše uvedených kategorií, rádi se s vámi spojíme a najdeme řešení na míru přesně vašim potřebám.</p>
+</section>
+
+<!-- PROJECT GALLERY (placeholder) -->
+<section class="project-gallery">
+  <div class="project-gallery-empty">Fotografie dalších realizací brzy přibudou.</div>
+</section>
+
+<!-- CTA -->
+<section class="project-cta">
+  <h2>Máte projekt, který nezapadá do žádné kategorie?</h2>
+  <p>Domluvte si bezplatnou konzultaci a probereme, jak by mohl vypadat.</p>
+  <a href="index.html#kontakt" class="btn-gold">Domluvit konzultaci zdarma</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="fbrand">
+        <img src="lehis-logo.jpg" alt="Lehis Interier" loading="lazy" decoding="async">
+        <span>Lehis Interier</span>
+      </div>
+      <p>Luxusní kuchyně a interiéry na míru. Precizní zpracování, prémiové materiály, výsledky na desetiletí.</p>
+    </div>
+    <div class="fcol">
+      <h4>Nabídka</h4>
+      <ul>
+        <li><a href="kuchyne.html">Kuchyně na míru</a></li>
+        <li><a href="obyvaci-pokoje.html">Obývací pokoje</a></li>
+        <li><a href="koupelny.html">Koupelny</a></li>
+        <li><a href="chodby.html">Chodby</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Projekt</h4>
+      <ul>
+        <li><a href="index.html#galerie">Galerie</a></li>
+        <li><a href="index.html#proces">Jak to funguje</a></li>
+        <li><a href="index.html#o-nas">O nás</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="mailto:info@interierlehis.cz">info@interierlehis.cz</a></li>
+        <li><a href="#">+420 XXX XXX XXX</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Lehis Interier. Všechna práva vyhrazena.</span>
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Hamburger menu ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mmToggle = document.getElementById('mmToggle');
+const mmSubmenu = document.getElementById('mmSubmenu');
+
+hamburger.addEventListener('click', e => {
+  e.stopPropagation();
+  mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
+});
+
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  mmToggle.classList.remove('open');
+  mmSubmenu.style.maxHeight = null;
+}
+
+document.addEventListener('click', e => {
+  if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
+});
+
+mmToggle.addEventListener('click', e => {
+  e.stopPropagation();
+  const isOpen = mmToggle.classList.toggle('open');
+  mmSubmenu.style.maxHeight = isOpen ? mmSubmenu.scrollHeight + 'px' : null;
+});
+
+// ── Nav shadow ──
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrollY > 40));
+</script>
+</body>
+</html>
